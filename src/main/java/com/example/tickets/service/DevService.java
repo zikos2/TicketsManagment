@@ -12,7 +12,7 @@ public interface DevService {
 	public void addDev(Developpeur dev);
 	public List<Developpeur> getDevs();
 	
-	public List<Ticket> getDevTickets(Developpeur dev);
+	public List<Ticket> getDevTickets(int idDev);
 	public void updateTicketStatus(int idTicket,String status);
 
 }

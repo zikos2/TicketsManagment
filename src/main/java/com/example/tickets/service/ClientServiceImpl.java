@@ -24,11 +24,18 @@ public class ClientServiceImpl implements ClientService{
 	@Override
 	public List<Ticket> getClientTickets(int clientId) {
 		Client client = clientRepo.getById(clientId);
-		return ticketRepo.getClientTickets(client);
+		
+		return client.getTickets();
 	}
 
 	@Override
 	public void createTicket(Ticket t) {
+		Client client =  clientRepo.getById(t.getClient().getIdClient());
+		List<Ticket> tickets = client.getTickets();
+		tickets.add(t);
+		client.setTickets(tickets);
+		clientRepo.save(client);
+		
 		ticketRepo.save(t);
 		
 	}

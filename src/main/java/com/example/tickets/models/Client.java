@@ -4,17 +4,23 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Client {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idClient;
 	private String name;
 	private String lastName;
 	
 	@OneToMany(mappedBy = "client",cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("client")
 	private List<Ticket> tickets;
 
 	public int getIdClient() {

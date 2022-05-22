@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.tickets.models.Admin;
 import com.example.tickets.models.Developpeur;
@@ -13,6 +14,7 @@ import com.example.tickets.repository.DevRepository;
 import com.example.tickets.repository.TicketRepository;
 
 @Service
+@Transactional
 public class AdminServiceImpl implements AdminService{
 	
 	@Autowired
@@ -30,8 +32,9 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public void assignTicket(int idTicket, Developpeur d,Admin a) {
-		
+	public void assignTicket(int idTicket, int idDev,int idAdmin) {
+		Developpeur d = devRepo.getById(idDev);
+		Admin a = adminRepo.getById(idAdmin);
 		ticketRepo.assignDev(idTicket,d,a);
 		
 	}

@@ -31,8 +31,9 @@ public class DevServiceImpl implements DevService{
 	}
 
 	@Override
-	public List<Ticket> getDevTickets(Developpeur dev) {
-		return ticketRepo.findByDev(dev);
+	public List<Ticket> getDevTickets(int idDev) {
+		
+		return ticketRepo.findByDev(idDev);
 	}
 
 	@Override

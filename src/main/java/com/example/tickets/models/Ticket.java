@@ -1,13 +1,20 @@
 package com.example.tickets.models;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 @Entity
+@JsonSerialize
 public class Ticket {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idTicket;
 	private String description;
 	private String urgency;
@@ -24,11 +31,13 @@ public class Ticket {
 	@ManyToOne
 	@JoinColumn(name = "idClient", nullable = false,
 	        referencedColumnName = "idClient")
+	@JsonIgnoreProperties("tickets")
 	private Client client;
 	
 	@ManyToOne
 	@JoinColumn(name = "idDev", nullable = true,
 	        referencedColumnName = "idDev")
+	@JsonIgnoreProperties("tickets")
 	private Developpeur dev;
 
 	public int getIdTicket() {

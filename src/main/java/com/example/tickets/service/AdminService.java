@@ -3,7 +3,6 @@ package com.example.tickets.service;
 import java.util.List;
 
 import com.example.tickets.models.Admin;
-import com.example.tickets.models.Developpeur;
 import com.example.tickets.models.Ticket;
 
 public interface AdminService {
@@ -15,6 +14,6 @@ public interface AdminService {
 	
 	
 	public List<Ticket> getNonAssignedTickets();
-	public void assignTicket(int idTicket,Developpeur dev,Admin admin);
+	public void assignTicket(int idTicket,int idDev,int idAdmin);
 	
 }
